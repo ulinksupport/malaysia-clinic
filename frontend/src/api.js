@@ -25,7 +25,8 @@ import {
 
 import {
   getListOfUsers,
-  postNewUser
+  postNewUser,
+  // optionally you may import update/delete integration if you like
 } from './integrations/user-integration';
 
 
@@ -340,21 +341,98 @@ export async function doBackUpAllChat({ setSessions, botKey }) {
 }
 
 // --- Admin (requires token) ---
-export async function adminListUsers() {
-  return await getListOfUsers();
+// Note: frontend expects users to have `assistantIds` array. Some backends may
+// return `allowedAssistantIds` or similar legacy fields. We normalize here.
+
+function normalizeUser(u = {}) {
+  // prefer assistantIds, fallback to allowedAssistantIds
+  const assistantIds = u.assistantIds || u.allowedAssistantIds || u.assistants || [];
+  return {
+    ...u,
+    assistantIds: Array.isArray(assistantIds) ? assistantIds : [],
+    // keep legacy fields around for UI compatibility
+    allowedAssistantIds: Array.isArray(assistantIds) ? assistantIds : (u.allowedAssistantIds || [])
+  };
 }
 
-export async function adminCreateUser({ username, password, assistantIds = [] }) {
-  return await postNewUser({
-    username,
-    password,
-    assistantIds
+export async function adminListUsers() {
+  // getListOfUsers() is your integration - it may call backend API and return users.
+  const users = await getListOfUsers();
+  if (!Array.isArray(users)) return [];
+  return users.map(normalizeUser);
+}
+
+/**
+ * Create new user or update existing user
+ * - If `id` is provided, this will call PUT /api/users/:id (update)
+ * - If no `id` provided, will call postNewUser(...) (create)
+ *
+ * Accepts either `assistantIds` or `allowedAssistantIds` (normalized).
+ * Enforces at least one assistant assigned.
+ */
+export async function adminCreateUser({ username, password, assistantIds = [], allowedAssistantIds = [], id } = {}) {
+  // normalize input assistant array
+  const aIds = Array.isArray(assistantIds) && assistantIds.length > 0
+    ? assistantIds
+    : (Array.isArray(allowedAssistantIds) ? allowedAssistantIds : []);
+
+  if (!Array.isArray(aIds) || aIds.length === 0) {
+    throw new Error("At least one assistant must be assigned to the user.");
+  }
+
+  // create
+  if (!id) {
+    // use your integration helper for creating user
+    const created = await postNewUser({
+      username,
+      password,
+      assistantIds: aIds
+    });
+    return normalizeUser(created || {});
+  }
+
+  // update existing user via API PUT
+  const token = getToken();
+  if (!token) throw new Error("Not authenticated (missing token)");
+
+  const payload = { username, assistantIds: aIds };
+  if (password) payload.password = password;
+
+  const updated = await request(`/api/users/${id}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
   });
+
+  return normalizeUser(updated || {});
+}
+
+/**
+ * Explicit update helper (alternative)
+ */
+export async function adminUpdateUser(userId, { username, assistantIds = [], password } = {}) {
+  if (!Array.isArray(assistantIds) || assistantIds.length === 0) {
+    throw new Error("At least one assistant must be assigned to the user.");
+  }
+  const token = getToken();
+  if (!token) throw new Error("Not authenticated (missing token)");
+
+  const payload = { username, assistantIds };
+  if (password) payload.password = password;
+
+  const updated = await request(`/api/users/${userId}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
+  });
+
+  return normalizeUser(updated || {});
 }
 
 export async function adminDeleteUser(userId) {
   const token = getToken();
-  return request(`/api/admin/users/${userId}`, {
+  if (!token) throw new Error("Not authenticated (missing token)");
+  return request(`/api/users/${userId}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -362,7 +440,7 @@ export async function adminDeleteUser(userId) {
 
 export async function adminResetUserPassword(userId, newPassword) {
   const token = getToken();
-  return request(`/api/admin/users/${userId}/reset-password`, {
+  return request(`/api/users/${userId}/reset-password`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({ password: newPassword }),
