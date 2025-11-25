@@ -347,11 +347,21 @@ export default function Dashboard() {
               >
                 <div className="logo-ring small" aria-hidden />
                 <strong>
-                  {botKey ? getBotName(botKey, filteredBots) : "Pick an assistant"}
+                  {botKey
+                    ? getBotName(botKey, filteredBots)
+                    : "Pick an assistant"}
                 </strong>
               </div>
 
               <div className="row" style={{ gap: 8 }}>
+                {/* NEW Allianz button */}
+                <button
+                  className="button ghost"
+                  onClick={() => navigate("/allianz/login")}
+                >
+                  Allianz
+                </button>
+
                 {isAdmin && (
                   <button
                     className="button ghost"
@@ -400,7 +410,8 @@ export default function Dashboard() {
                     (currentSession?.messages || []).map((m, index) => {
                       const key =
                         m.id || `${m.role}-${m.createdAt || index}-${index}`;
-                      const roleClass = m.role === "user" ? "user" : "assistant";
+                      const roleClass =
+                        m.role === "user" ? "user" : "assistant";
                       return (
                         <div key={key} className={`bubble ${roleClass}`}>
                           <div className="bubble-inner">
