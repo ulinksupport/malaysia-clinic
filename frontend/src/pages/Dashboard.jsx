@@ -18,7 +18,6 @@ export default function Dashboard() {
   const user = getUser();
 
   const GOLD = "#FECE54";
-  const GOLD_SOFT = "#FCE59E";
 
   return (
     <div
@@ -26,38 +25,34 @@ export default function Dashboard() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        background:
-          "radial-gradient(circle at top, #1b1410 0%, #050506 45%, #020203 100%)",
-        color: "#f9fafb",
+        background: "linear-gradient(135deg,#f5fbff 0%,#fff7f1 100%)",
         fontFamily:
           '"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+        color: "#0f172a",
       }}
     >
-      {/* ====================== TOP BAR ====================== */}
+      {/* ====================== TOP BAR (same structure as Allianz) ====================== */}
       <header
         style={{
-          padding: "14px 28px",
+          padding: "16px 24px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          background: "rgba(5, 5, 7, 0.95)",
-          borderBottom: `1px solid rgba(254, 206, 84, 0.28)`,
-          backdropFilter: "blur(14px)",
-          boxShadow: "0 18px 45px rgba(0,0,0,0.75)",
-          zIndex: 10,
+          background: "#ffffff",
+          boxShadow: "0 1px 4px rgba(15,23,42,0.06)",
+          zIndex: 1,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          {/* Logo */}
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          {/* Alpha Logo */}
           <div
             style={{
-              width: 40,
-              height: 40,
+              width: 36,
+              height: 36,
               borderRadius: "999px",
               padding: 2,
               background:
                 "conic-gradient(from 180deg at 50% 50%, #FECE54, #FCE59E, #FECE54)",
-              boxShadow: "0 0 18px rgba(254, 206, 84, 0.55)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -78,67 +73,45 @@ export default function Dashboard() {
 
           {/* Title + User */}
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <span
-              style={{
-                fontSize: 14,
-                letterSpacing: 3,
-                textTransform: "uppercase",
-                color: GOLD_SOFT,
-                opacity: 0.9,
-              }}
-            >
-              The Alpha Clinic
-            </span>
-            <strong style={{ fontSize: 18, marginTop: 2, color: "#fdfdfd" }}>
-              Clinical AI Console
-            </strong>
+            <strong style={{ fontSize: 16 }}>The Alpha Clinic – AI Console</strong>
             {user && (
-              <span style={{ fontSize: 12, opacity: 0.75, marginTop: 4 }}>
+              <span
+                style={{
+                  fontSize: 13,
+                  opacity: 0.7,
+                  marginTop: 2,
+                }}
+              >
                 Logged in as{" "}
-                <span style={{ color: GOLD, fontWeight: 600 }}>
-                  {user.username}
-                </span>
+                <strong style={{ color: GOLD }}>{user.username}</strong>
               </span>
             )}
           </div>
         </div>
 
-        {/* Right section */}
-        <div style={{ display: "flex", gap: 10 }}>
-          <div
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {/* Status pill */}
+          <span
             style={{
               padding: "4px 10px",
               borderRadius: 999,
-              border: `1px solid rgba(148, 163, 184, 0.25)`,
               fontSize: 11,
               textTransform: "uppercase",
               letterSpacing: 1.3,
-              color: "#e5e7eb",
-              background:
-                "linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.35))",
+              background: "rgba(34,197,94,0.08)",
+              color: "#16a34a",
+              border: "1px solid rgba(34,197,94,0.35)",
             }}
           >
             Assistant Online
-          </div>
+          </span>
 
+          {/* Logout */}
           <button
+            className="button ghost"
             onClick={() => {
               clearAuth();
               navigate("/login");
-            }}
-            style={{
-              padding: "8px 18px",
-              borderRadius: 999,
-              border: `1px solid ${GOLD}`,
-              background:
-                "linear-gradient(135deg, rgba(5,5,7,0.9), rgba(15,15,20,0.9))",
-              color: GOLD_SOFT,
-              fontSize: 13,
-              fontWeight: 500,
-              cursor: "pointer",
-              boxShadow: "0 0 0 1px rgba(0,0,0,0.6)",
-              transition:
-                "background 160ms ease, box-shadow 160ms ease, color 160ms ease",
             }}
           >
             Logout
@@ -146,52 +119,25 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* ====================== MAIN AREA ====================== */}
-      <main
-        style={{
-          flex: 1,
-          padding: "0px 0px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      {/* ====================== MAIN AREA (same iframe layout as Allianz) ====================== */}
+      <main style={{ flex: 1, padding: 16 }}>
         <div
           style={{
-            flex: 1,
-            borderRadius: 22,
+            width: "100%",
+            height: "100%",
+            borderRadius: 16,
             overflow: "hidden",
-            background:
-              "radial-gradient(circle at top left, rgba(254,206,84,0.14), transparent 55%), #050507",
-            boxShadow:
-              "0 28px 80px rgba(0,0,0,0.85), 0 0 0 1px rgba(148,163,184,0.2)",
-            border: "1px solid rgba(15, 23, 42, 0.8)",
-            position: "relative",
-            margin: 16,
+            background: "#ffffff",
+            boxShadow: "0 10px 40px rgba(15,23,42,0.12)",
           }}
         >
-          {/* Gold accent */}
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 3,
-              background:
-                "linear-gradient(90deg, transparent 0%, #FECE54 35%, #FCE59E 50%, #FECE54 65%, transparent 100%)",
-              opacity: 0.9,
-              zIndex: 2,
-            }}
-          />
-
-          {/* ============== FINAL WORKING IFRAME ============== */}
           <iframe
             src={ALPHA_IFRAME_URL}
+            title="Alpha Clinic Assistant Chatbot"
             width="100%"
             height="100%"
-            style={{ border: "none" }}
-            title="Lindy Embed"
-          ></iframe>
+            style={{ border: "none", display: "block" }}
+          />
         </div>
       </main>
     </div>
