@@ -10,6 +10,10 @@
   --ulink-teal:#33c0c5;
   --ulink-orange:#ff7a2e;
 
+  /* Singlife brand */
+  --singlife-red:#E4002B;
+  --singlife-red-hover:#c70024;
+
   /* Allianz brand */
   --allianz-blue1:#00448F;
   --allianz-blue2:#0066CC;
@@ -27,9 +31,9 @@
   --shadow1:0 10px 24px rgba(16,24,40,.08), 0 2px 8px rgba(16,24,40,.05);
   --shadow2:0 18px 50px rgba(16,24,40,.10), 0 2px 10px rgba(16,24,40,.06);
 
-  /* accents – Ulink default */
-  --accent:linear-gradient(135deg, var(--ulink-orange), #ff8e4c);
-  --accent-soft:linear-gradient(135deg, rgba(51,192,197,.12), rgba(255,122,46,.12));
+  /* accents – Singlife default (buttons use this) */
+  --accent:linear-gradient(135deg, var(--singlife-red), #ff4b5c);
+  --accent-soft:linear-gradient(135deg, rgba(228,0,43,.12), rgba(255,75,92,.12));
 }
 
 /* ---------- page reset ---------- */
@@ -90,7 +94,7 @@ a{ color:inherit; text-decoration:none }
 }
 .button:active{ transform:translateY(1px) }
 
-/* Default Ulink primary button (orange) */
+/* Default primary button (now Singlife red) */
 .button.primary{
   background:var(--accent);
   color:#fff;

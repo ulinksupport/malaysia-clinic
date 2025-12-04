@@ -3,8 +3,8 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken, clearAuth, getUser } from "../api";
 
-const ALPHA_IFRAME_URL =
-  "https://chat.lindy.ai/embedded/lindyEmbed/9b5f6236-91e8-4b27-9ab2-e109e57f7d67";
+const SINGLIFE_IFRAME_URL =
+  "https://chat.lindy.ai/embedded/lindyEmbed/53b900ed-48c4-4171-b349-23653a7009af";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function Dashboard() {
         color: "#0f172a",
       }}
     >
-      {/* ====================== TOP BAR (same structure as Allianz) ====================== */}
+      {/* ====================== TOP BAR ====================== */}
       <header
         style={{
           padding: "16px 24px",
@@ -44,36 +44,35 @@ export default function Dashboard() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {/* Alpha Logo */}
+          {/* Singlife Logo */}
           <div
             style={{
               width: 36,
               height: 36,
               borderRadius: "999px",
               padding: 2,
-              background:
-                "conic-gradient(from 180deg at 50% 50%, #FECE54, #FCE59E, #FECE54)",
+              background: "#ffffff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
             <img
-              src="/alpha-logo.png"
-              alt="Alpha Clinic Logo"
+              src="/singlife-logo.png"
+              alt="Singlife Logo"
               style={{
                 width: "100%",
                 height: "100%",
                 objectFit: "contain",
-                borderRadius: "999px",
-                backgroundColor: "#050507",
               }}
             />
           </div>
 
           {/* Title + User */}
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <strong style={{ fontSize: 16 }}>The Alpha Clinic – AI Console</strong>
+            <strong style={{ fontSize: 16 }}>
+              Ulink–Singlife Shield Plan – AI Console
+            </strong>
             {user && (
               <span
                 style={{
@@ -119,7 +118,7 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* ====================== MAIN AREA (same iframe layout as Allianz) ====================== */}
+      {/* ====================== MAIN AREA ====================== */}
       <main style={{ flex: 1, padding: 16 }}>
         <div
           style={{
@@ -132,8 +131,8 @@ export default function Dashboard() {
           }}
         >
           <iframe
-            src={ALPHA_IFRAME_URL}
-            title="Alpha Clinic Assistant Chatbot"
+            src={SINGLIFE_IFRAME_URL}
+            title="Ulink–Singlife Shield Plan AI Assistant"
             width="100%"
             height="100%"
             style={{ border: "none", display: "block" }}

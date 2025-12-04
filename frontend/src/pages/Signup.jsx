@@ -22,10 +22,10 @@ export default function Signup() {
     setLoading(true);
     try {
       await register(username, password);
-      // after signup, send them to Alpha Clinic login
+      // After signup → go to Singlife login
       navigate("/login");
     } catch (err) {
-      setError(err.message || "Alpha Clinic signup failed");
+      setError(err.message || "Singlife signup failed");
     } finally {
       setLoading(false);
     }
@@ -34,10 +34,10 @@ export default function Signup() {
   return (
     <div className="center-screen">
       <div className="card" style={{ maxWidth: 420 }}>
-        {/* Alpha Clinic Logo */}
+        {/* Singlife Logo */}
         <img
-          src="/alpha-logo.png"
-          alt="Alpha Clinic Logo"
+          src="/singlife-logo.png"
+          alt="Singlife Logo"
           style={{
             width: 110,
             height: "auto",
@@ -46,10 +46,8 @@ export default function Signup() {
           }}
         />
 
-        <h2 className="form-title">Create Alpha Clinic Account</h2>
-        <p className="form-sub">
-          Set up your access to the Alpha Clinic console
-        </p>
+        <h2 className="form-title">Create Singlife Account</h2>
+        <p className="form-sub">Set up your access to the Singlife console</p>
 
         <form className="stack" onSubmit={onSubmit}>
           <label>Username</label>
@@ -73,18 +71,14 @@ export default function Signup() {
             </div>
           )}
 
-          <button
-            className="button primary"
-            type="submit"
-            disabled={loading}
-          >
+          <button className="button primary" type="submit" disabled={loading}>
             {loading ? "Signing up..." : "Sign up"}
           </button>
         </form>
 
         <div className="row" style={{ marginTop: 10 }}>
           <Link to="/login" className="button ghost">
-            Back to Alpha Clinic login
+            Back to Singlife login
           </Link>
         </div>
       </div>

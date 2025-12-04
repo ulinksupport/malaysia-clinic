@@ -24,7 +24,7 @@ export default function Login() {
       await login(username, password);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message || "Alpha Clinic login failed");
+      setError(err.message || "Singlife login failed");
     } finally {
       setLoading(false);
     }
@@ -33,11 +33,10 @@ export default function Login() {
   return (
     <div className="center-screen">
       <div className="card" style={{ maxWidth: 420 }}>
-        
-        {/* Alpha Clinic Logo */}
+        {/* Singlife Logo */}
         <img
-          src="/alpha-logo.png"
-          alt="Alpha Clinic Logo"
+          src="/singlife-logo.png"
+          alt="Singlife Logo"
           style={{
             width: 110,
             height: "auto",
@@ -46,8 +45,8 @@ export default function Login() {
           }}
         />
 
-        <h2 className="form-title">Alpha Clinic Console</h2>
-        <p className="form-sub">Sign in to access the Alpha Clinic console</p>
+        <h2 className="form-title">Singlife Console</h2>
+        <p className="form-sub">Sign in to access the Singlife console</p>
 
         <form className="stack" onSubmit={onSubmit}>
           <label>Username</label>
@@ -81,12 +80,11 @@ export default function Login() {
         </form>
 
         <div className="row" style={{ marginTop: 10 }}>
-          <span>New Alpha Clinic user?</span>
+          <span>New Singlife user?</span>
           <Link to="/signup" className="button ghost">
             Create account
           </Link>
         </div>
-
       </div>
     </div>
   );
