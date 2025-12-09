@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getToken, clearAuth, getUser } from "../api";
 
 const SINGLIFE_IFRAME_URL =
-  "https://chat.lindy.ai/embedded/lindyEmbed/53b900ed-48c4-4171-b349-23653a7009af";
+  "https://chat.lindy.ai/embedded/lindyEmbed/dfbb95eb-e597-43c2-937f-d74d87eef8c3";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -119,7 +119,7 @@ export default function Dashboard() {
       </header>
 
       {/* ====================== MAIN AREA ====================== */}
-      <main style={{ flex: 1, padding: 16 }}>
+      <main style={{ flex: 1, padding: 16, minHeight: 0 }}>
         <div
           style={{
             width: "100%",
@@ -132,7 +132,7 @@ export default function Dashboard() {
         >
           <iframe
             src={SINGLIFE_IFRAME_URL}
-            title="Ulink–Singlife Shield Plan AI Assistant"
+            title="Lindy Embed"
             width="100%"
             height="100%"
             style={{ border: "none", display: "block" }}
