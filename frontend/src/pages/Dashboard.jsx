@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getToken, clearAuth, getUser } from "../api";
 
 const SINGLIFE_IFRAME_URL =
-  "https://chat.lindy.ai/embedded/lindyEmbed/dfbb95eb-e597-43c2-937f-d74d87eef8c3";
+  "https://chat.lindy.ai/embedded/lindyEmbed/9b5f6236-91e8-4b27-9ab2-e109e57f7d67";
 
 export default function Dashboard() {
   const navigate = useNavigate();
