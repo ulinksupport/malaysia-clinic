@@ -22,10 +22,10 @@ export default function Signup() {
     setLoading(true);
     try {
       await register(username, password);
-      // After signup → go to Singlife login
+      // After signup → go to Care Clinic login
       navigate("/login");
     } catch (err) {
-      setError(err.message || "Singlife signup failed");
+      setError(err.message || "Care Clinic signup failed");
     } finally {
       setLoading(false);
     }
@@ -34,10 +34,10 @@ export default function Signup() {
   return (
     <div className="center-screen">
       <div className="card" style={{ maxWidth: 420 }}>
-        {/* Singlife Logo */}
+        {/* Care Clinic Logo */}
         <img
-          src="/singlife-logo.png"
-          alt="Singlife Logo"
+          src="/care%20clinic.png"
+          alt="Care Clinic Logo"
           style={{
             width: 110,
             height: "auto",
@@ -46,8 +46,8 @@ export default function Signup() {
           }}
         />
 
-        <h2 className="form-title">Create Singlife Account</h2>
-        <p className="form-sub">Set up your access to the Singlife console</p>
+        <h2 className="form-title">Create Care Clinic Account</h2>
+        <p className="form-sub">Set up your access to the Care Clinic console</p>
 
         <form className="stack" onSubmit={onSubmit}>
           <label>Username</label>
@@ -78,7 +78,7 @@ export default function Signup() {
 
         <div className="row" style={{ marginTop: 10 }}>
           <Link to="/login" className="button ghost">
-            Back to Singlife login
+            Back to Care Clinic login
           </Link>
         </div>
       </div>

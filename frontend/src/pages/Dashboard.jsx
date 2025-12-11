@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getToken, clearAuth, getUser } from "../api";
 
 const SINGLIFE_IFRAME_URL =
-  "https://chat.lindy.ai/embedded/lindyEmbed/9b5f6236-91e8-4b27-9ab2-e109e57f7d67";
+  "https://api.lindy.ai/api/lindyEmbed/lindyEmbed.js?a=9bab714c-7ed1-448c-ba07-8f967d186ca7";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function Dashboard() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {/* Singlife Logo */}
+          {/* Care Clinic Logo */}
           <div
             style={{
               width: 36,
@@ -58,8 +58,8 @@ export default function Dashboard() {
             }}
           >
             <img
-              src="/singlife-logo.png"
-              alt="Singlife Logo"
+              src="/care%20clinic.png"
+              alt="Care Clinic Logo"
               style={{
                 width: "100%",
                 height: "100%",
@@ -71,7 +71,7 @@ export default function Dashboard() {
           {/* Title + User */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             <strong style={{ fontSize: 16 }}>
-              Ulink–Singlife Shield Plan – AI Console
+              Care Clinic – AI Console
             </strong>
             {user && (
               <span
