@@ -44,7 +44,7 @@ export default function Dashboard() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          {/* careclinics Logo */}
+          {/* Careclinics Logo */}
           <div
             style={{
               width: 36,
@@ -59,7 +59,7 @@ export default function Dashboard() {
           >
             <img
               src="/care%20clinic.png"
-              alt="careclinics Logo"
+              alt="Careclinics Logo"
               style={{
                 width: "100%",
                 height: "100%",
@@ -71,7 +71,7 @@ export default function Dashboard() {
           {/* Title + User */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             <strong style={{ fontSize: 16 }}>
-              careclinics – AI Console
+              Careclinics – AI Console
             </strong>
             {user && (
               <span
