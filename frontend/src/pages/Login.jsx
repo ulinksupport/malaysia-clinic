@@ -24,7 +24,7 @@ export default function Login() {
       await login(username, password);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message || "Care Clinic login failed");
+      setError(err.message || "careclinics login failed");
     } finally {
       setLoading(false);
     }
@@ -33,10 +33,10 @@ export default function Login() {
   return (
     <div className="center-screen">
       <div className="card" style={{ maxWidth: 420 }}>
-        {/* Care Clinic Logo */}
+        {/* careclinics Logo */}
         <img
           src="/care%20clinic.png"
-          alt="Care Clinic Logo"
+          alt="careclinics Logo"
           style={{
             width: 110,
             height: "auto",
@@ -45,8 +45,8 @@ export default function Login() {
           }}
         />
 
-        <h2 className="form-title">Care Clinic Console</h2>
-        <p className="form-sub">Sign in to access the Care Clinic console</p>
+        <h2 className="form-title">careclinics Console</h2>
+        <p className="form-sub">Sign in to access the careclinics console</p>
 
         <form className="stack" onSubmit={onSubmit}>
           <label>Username</label>
@@ -80,7 +80,7 @@ export default function Login() {
         </form>
 
         <div className="row" style={{ marginTop: 10 }}>
-          <span>New Care Clinic user?</span>
+          <span>New careclinics user?</span>
           <Link to="/signup" className="button ghost">
             Create account
           </Link>

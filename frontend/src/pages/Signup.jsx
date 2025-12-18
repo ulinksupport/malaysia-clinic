@@ -22,10 +22,10 @@ export default function Signup() {
     setLoading(true);
     try {
       await register(username, password);
-      // After signup → go to Care Clinic login
+      // After signup → go to careclinics login
       navigate("/login");
     } catch (err) {
-      setError(err.message || "Care Clinic signup failed");
+      setError(err.message || "careclinics signup failed");
     } finally {
       setLoading(false);
     }
@@ -34,10 +34,10 @@ export default function Signup() {
   return (
     <div className="center-screen">
       <div className="card" style={{ maxWidth: 420 }}>
-        {/* Care Clinic Logo */}
+        {/* careclinics Logo */}
         <img
           src="/care%20clinic.png"
-          alt="Care Clinic Logo"
+          alt="careclinics Logo"
           style={{
             width: 110,
             height: "auto",
@@ -46,8 +46,8 @@ export default function Signup() {
           }}
         />
 
-        <h2 className="form-title">Create Care Clinic Account</h2>
-        <p className="form-sub">Set up your access to the Care Clinic console</p>
+        <h2 className="form-title">Create careclinics Account</h2>
+        <p className="form-sub">Set up your access to the careclinics console</p>
 
         <form className="stack" onSubmit={onSubmit}>
           <label>Username</label>
@@ -78,7 +78,7 @@ export default function Signup() {
 
         <div className="row" style={{ marginTop: 10 }}>
           <Link to="/login" className="button ghost">
-            Back to Care Clinic login
+            Back to careclinics login
           </Link>
         </div>
       </div>
